@@ -1,0 +1,28 @@
+
+<h3>Crea tu tweet</h3>
+<%= form_with(model: @tweet, local: true) do |form| %>
+<% if @tweet.errors.any? %>
+  <div class="alert alert-danger" id="error-explanation">
+    <h2><%= pluralize(@tweet.errors.count, "error") %> Prohibited this tweet from being saved</h2>
+    <ul>
+      <% @tweet.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+    <div class="form-group">
+      <%= form.label :content, "Mensaje" %>
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+    <%= form.label :image_url, "URL Imagen" %>
+    <%= form.text_field :image_url, class: "form-control" %>
+    </div>
+
+    <div class="my-3">
+      <%= form.submit "Create", class:"btn btn-primary" %>
+    </div>
+<% end %>
