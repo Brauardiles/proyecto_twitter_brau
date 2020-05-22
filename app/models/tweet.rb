@@ -1,7 +1,8 @@
 class Tweet < ApplicationRecord
+  belongs_to :user
   validates :content, presence: true
-  has_many :likes
-  has_many :retweets
+  has_many :likes, dependent: :destroy
+  has_many :retweets, dependent: :destroy
   attribute :total_likes, :integer, default: 0
   attribute :total_retweet, :integer, default: 0
 

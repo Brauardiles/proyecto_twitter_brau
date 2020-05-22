@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-
+  before_action :authenticate_user!, except: :index
   def index
     @tweet = Tweet.new
     @tweets = Tweet.order(:created_at).page params[:page]
@@ -11,6 +11,7 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.user = current_user
     if @tweet.save
       flash[:notice] = 'Tweet creado exitosamente'
       redirect_to tweets_path
