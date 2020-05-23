@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   post 'retweeets/:tweet_id', to: 'retweets#create', as: 'retweets'
   post 'likes/:tweet_id', to: 'likes#create', as: 'likes'
 
