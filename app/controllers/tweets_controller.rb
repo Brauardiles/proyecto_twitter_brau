@@ -1,8 +1,13 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!, except: :index
   def index
-    @tweet = Tweet.new
-    @tweets = Tweet.order(:created_at).page params[:page]
+    if user_signed_in?
+      @followers = current_user.followings.pluck(:followed_id)
+      @tweet = Tweet.new
+      @tweets = Tweet.tweets_for_me(@followers).order(:created_at).page params[:page]
+    else
+      @tweets = Tweet.order(:created_at).page params[:page]
+    end
   end
 
   def new
