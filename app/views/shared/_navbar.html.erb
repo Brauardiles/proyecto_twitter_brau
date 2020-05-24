@@ -6,6 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <%= link_to "Inicio", tweets_path, class: "nav-item nav-link" %>
+
       <% if current_user %>
         <%= link_to "Crear Tweet", new_tweet_path, class: "nav-item nav-link" %>
         <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>

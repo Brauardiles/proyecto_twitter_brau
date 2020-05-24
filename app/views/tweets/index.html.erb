@@ -1,5 +1,12 @@
 <h1>Tweets#index</h1>
 <p>Find me in app/views/tweets/index.html.erb</p>
+  <%= search_form_for @q, url: search_tweet_tweets_path do |f| %>
+    <%# # Search if the name field contains... %>
+    <%= f.label :content_cont %>
+    <%= f.search_field :content_cont %>
+    <%= f.submit %>
+  <% end %>
+
 
 <% if current_user %>
   <%= render "form" %>
