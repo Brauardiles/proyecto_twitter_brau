@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_token_authenticatable
+
   has_many :tweets, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :retweets, dependent: :destroy

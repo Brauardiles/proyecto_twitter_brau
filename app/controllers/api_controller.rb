@@ -1,6 +1,7 @@
 class ApiController < ActionController::API
   # include ActionController::HttpAuthentication::Basic::ControllerMethods
   # http_basic_authenticate_with email: user.email, password: user.password
+  acts_as_token_authentication_handler_for User
 
   def news
     @tweets = Tweet.all.order(id: :desc).limit(50)
@@ -29,7 +30,7 @@ class ApiController < ActionController::API
   def create_news
     @tweet = Tweet.create(
       content: params.require(:content),
-      user: User.find(params.require(:user_id))
+      user: current_user
     )
 
     render json: @tweet
