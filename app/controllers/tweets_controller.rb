@@ -16,6 +16,12 @@ class TweetsController < ApplicationController
     @tweets_search = @q.result(distinct: true)
   end
 
+  def hashtag
+    @tag = Tag.find_by(name: params[:name])
+    @tweets = @tag.tweets
+
+  end
+
   def new
     @tweet = Tweet.new
   end
